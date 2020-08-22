@@ -1,6 +1,6 @@
 package org.fir3.teye.ui.renderer.gl;
 
-import org.fir3.teye.util.Resources;
+import org.fir3.teye.Resources;
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
@@ -10,11 +10,8 @@ import java.nio.FloatBuffer;
 import java.nio.charset.StandardCharsets;
 
 class MosaicShader implements Disposable {
-    private static final String PATH_VERTEX_SHADER =
-            "/shader/gl/mosaic.vertex.glsl";
-
-    private static final String PATH_FRAGMENT_SHADER =
-            "/shader/gl/mosaic.fragment.glsl";
+    // TODO:    Uniform/Variable names should rather be specified inside the
+    //          Resources class.
 
     private static final String UNIFORM_PROJECTION_MATRIX =
             "projection_matrix";
@@ -87,13 +84,13 @@ class MosaicShader implements Disposable {
         this.vertexShaderId = MosaicShader.createShader(
                 GL20.GL_VERTEX_SHADER,
                 Resources.readComplete(
-                        MosaicShader.PATH_VERTEX_SHADER,
+                        Resources.SHADER_GL_MOSAIC_VERTEX_GLSL,
                         StandardCharsets.UTF_8));
 
         this.fragmentShaderId = MosaicShader.createShader(
                 GL20.GL_FRAGMENT_SHADER,
                 Resources.readComplete(
-                        MosaicShader.PATH_FRAGMENT_SHADER,
+                        Resources.SHADER_GL_MOSAIC_FRAGMENT_GLSL,
                         StandardCharsets.UTF_8));
 
         // Program preparation and linking

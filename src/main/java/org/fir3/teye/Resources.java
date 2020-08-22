@@ -1,11 +1,21 @@
-package org.fir3.teye.util;
+package org.fir3.teye;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Resources {
+    public static final String SHADER_GL_MOSAIC_FRAGMENT_GLSL =
+            "/org/fir3/teye/res/shader/gl/mosaic.fragment.glsl";
+
+    public static final String SHADER_GL_MOSAIC_VERTEX_GLSL =
+            "/org/fir3/teye/res/shader/gl/mosaic.vertex.glsl";
+
     /**
      * Reads the whole content of the specified <code>resourcePath</code> from
      * the classpath and takes it as {@link String} of the specified
@@ -48,7 +58,7 @@ public final class Resources {
                     "Only root-relative resource paths allowed!");
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
-             InputStream in = Resources.class.getResourceAsStream(
+             InputStream in = org.fir3.teye.util.Resources.class.getResourceAsStream(
                      resourcePath)) {
             byte[] buf = new byte[1024];
             int length;
@@ -62,6 +72,4 @@ public final class Resources {
             throw new IllegalStateException("Cannot read resource!");
         }
     }
-
-    private Resources() {}
 }
