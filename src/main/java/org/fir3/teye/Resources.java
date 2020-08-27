@@ -58,7 +58,7 @@ public final class Resources {
                     "Only root-relative resource paths allowed!");
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
-             InputStream in = org.fir3.teye.util.Resources.class.getResourceAsStream(
+             InputStream in = Resources.class.getResourceAsStream(
                      resourcePath)) {
             byte[] buf = new byte[1024];
             int length;
